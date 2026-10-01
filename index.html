@@ -1,0 +1,1458 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <title>Old School Band — Live Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <style>
+    .site-logo {
+      width: 120px;
+      height: auto;
+      display: block;
+    }
+
+    :root {
+      --bg: #080808;
+      --ink: #f5f2ec;
+      --soft: #bcb7ae;
+      --gold: #caa76a;
+      --line: rgba(255, 255, 255, .12);
+      --glass: rgba(12, 12, 12, .62);
+      --max: 1080px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif
+    }
+
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background: url("Old-School-Band-Craiova.jpeg") center 5%/cover;
+      transform: scale(1.04)
+    }
+
+    body:after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(180deg, rgba(0, 0, 0, .48), rgba(0, 0, 0, .78))
+    }
+
+    .stage-lights {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+      mix-blend-mode: screen
+    }
+
+    .stage-glow {
+      position: absolute;
+      left: 50%;
+      top: 8%;
+      width: 45vw;
+      height: 45vw;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(202, 167, 106, .12), transparent 68%);
+      filter: blur(18px);
+      animation: pulse 6s ease-in-out infinite
+    }
+
+    .beam {
+      position: absolute;
+      top: -20%;
+      width: 24vw;
+      height: 145vh;
+      opacity: .10;
+      filter: blur(9px);
+      transform-origin: 50% 0
+    }
+
+    .beam-a {
+      left: 4%;
+      background: linear-gradient(90deg, transparent 20%, rgba(220, 205, 178, .85), transparent 80%);
+      transform: rotate(22deg);
+      animation: sweepA 8s ease-in-out infinite
+    }
+
+    .beam-b {
+      right: 4%;
+      background: linear-gradient(90deg, transparent 20%, rgba(202, 167, 106, .8), transparent 80%);
+      transform: rotate(-20deg);
+      animation: sweepB 9s ease-in-out infinite
+    }
+
+    .beam-c {
+      left: 42%;
+      width: 16vw;
+      background: linear-gradient(90deg, transparent 15%, rgba(255, 255, 255, .55), transparent 85%);
+      transform: rotate(1deg);
+      opacity: .045;
+      animation: sweepC 11s ease-in-out infinite
+    }
+
+    .flash {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 244, 220, .16);
+      opacity: 0;
+      animation: flash 7s ease-in-out infinite
+    }
+
+    @keyframes sweepA {
+
+      0%,
+      100% {
+        transform: rotate(22deg) translateX(-4vw)
+      }
+
+      50% {
+        transform: rotate(34deg) translateX(9vw)
+      }
+    }
+
+    @keyframes sweepB {
+
+      0%,
+      100% {
+        transform: rotate(-20deg) translateX(4vw)
+      }
+
+      50% {
+        transform: rotate(-34deg) translateX(-9vw)
+      }
+    }
+
+    @keyframes sweepC {
+
+      0%,
+      100% {
+        transform: rotate(1deg)
+      }
+
+      50% {
+        transform: rotate(-10deg)
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: .55;
+        transform: translateX(-50%) scale(.9)
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.12)
+      }
+    }
+
+    @keyframes flash {
+
+      0%,
+      76%,
+      100% {
+        opacity: 0
+      }
+
+      78% {
+        opacity: .8
+      }
+
+      79% {
+        opacity: 0
+      }
+
+      80% {
+        opacity: .35
+      }
+
+      81% {
+        opacity: 0
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      .beam,
+      .stage-glow,
+      .flash {
+        animation: none
+      }
+
+      .flash {
+        display: none
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 30px));
+      margin: auto
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 2px 0;
+      background: rgba(0, 0, 0, .65);
+      transition: .3s
+    }
+
+    header.active {
+      background: rgba(7, 7, 7, .82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 120px;
+      height: auto;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: 23px
+    }
+
+    nav a {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: #ddd
+    }
+
+    nav a:hover {
+      color: var(--gold)
+    }
+
+    .menu {
+      display: none;
+      border: 0;
+      background: none;
+      color: white;
+      font-size: 22px
+    }
+
+    section {
+      padding: 54px 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      background: rgba(6, 6, 6, .70)
+    }
+
+    .hero {
+      min-height: 78svh;
+      border: 0;
+      padding: 0 0 52px;
+      display: flex;
+      align-items: flex-end;
+      background: transparent
+    }
+
+    .hero .wrap.reveal {
+      position: relative;
+      top: 65px
+    }
+
+    .hero .wrap.reveal.show {
+      transform: translateY(65px)
+    }
+
+    .eyebrow {
+      font: 600 9px Manrope, sans-serif;
+      letter-spacing: .27em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 13px
+    }
+
+    .hero h1 {
+      font: 600 clamp(55px, 10vw, 112px)/.82 "Playfair Display", serif;
+      letter-spacing: -.05em;
+      margin: 0
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+      font-style: italic
+    }
+
+    .heroText {
+      max-width: 480px;
+      margin-top: 20px;
+      color: #ddd;
+      font-size: 14px;
+      line-height: 1.55
+    }
+
+    .actions {
+      margin-top: 21px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, .3);
+      font: 700 9px Manrope, sans-serif;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: .25s;
+      margin-right: 6px
+    }
+
+    .whatsapp-btn {
+      position: relative;
+      overflow: hidden;
+      gap: 8px;
+      border-color: rgba(255, 255, 255, .25);
+    }
+
+    .whatsapp-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+      position: relative;
+      z-index: 2;
+    }
+
+    .whatsapp-btn span:last-child {
+      position: relative;
+      z-index: 2;
+    }
+
+    .whatsapp-light {
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle,
+          rgba(255, 255, 255, .55) 0%,
+          rgba(214, 170, 91, .25) 35%,
+          transparent 70%);
+      filter: blur(5px);
+      animation: stageLight 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes stageLight {
+
+      0%,
+      100% {
+        opacity: .35;
+        transform: translate(-50%, -50%) scale(.75);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+    }
+
+    .whatsapp-btn:hover .whatsapp-light {
+      animation-duration: .8s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px)
+    }
+
+    .btn.gold {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #111
+    }
+
+    .scrollhint {
+      position: absolute;
+      right: 16px;
+      bottom: 28px;
+      writing-mode: vertical-rl;
+      color: #aaa;
+      font-size: 8px;
+      letter-spacing: .2em
+    }
+
+    .kicker {
+      font: 700 9px Manrope, sans-serif;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 11px
+    }
+
+    h2 {
+      font: 600 clamp(35px, 6vw, 65px)/.94 "Playfair Display", serif;
+      margin: 0;
+      letter-spacing: -.025em
+    }
+
+    .lead {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #d4d0c9;
+      margin: 0
+    }
+
+    .muted {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--soft);
+      margin: 0
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 55px;
+      align-items: start
+    }
+
+    .stats {
+      display: flex;
+      gap: 25px;
+      margin-top: 25px;
+      padding-top: 17px;
+      border-top: 1px solid var(--line)
+    }
+
+    .stat strong {
+      display: block;
+      font: 600 25px "Playfair Display";
+      color: var(--gold)
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 3px;
+      font: 600 8px Manrope;
+      color: #8e8981;
+      text-transform: uppercase;
+      letter-spacing: .12em
+    }
+
+    .light {
+      background: rgba(239, 235, 228, .96);
+      color: #121212
+    }
+
+    .light .muted {
+      color: #55504a
+    }
+
+    .light .kicker {
+      color: #87642f
+    }
+
+    .eventGrid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 28px
+    }
+
+    .event {
+      padding: 22px 17px;
+      min-height: 142px;
+      background: #e9e5de
+    }
+
+    .event:nth-child(2) {
+      background: #dfdad2
+    }
+
+    .event:nth-child(3) {
+      background: #d6d0c7
+    }
+
+    .event:nth-child(4) {
+      background: #ccc5ba
+    }
+
+    .event b {
+      display: block;
+      font: 600 23px "Playfair Display";
+      margin-bottom: 8px
+    }
+
+    .event p {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #55504a;
+      margin: 0
+    }
+
+    .galleryHead {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px
+    }
+
+    .galleryHead .muted {
+      max-width: 330px
+    }
+
+    .photos {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      margin-top: 24px;
+      padding-bottom: 4px
+    }
+
+    .photos::-webkit-scrollbar {
+      display: none
+    }
+
+    .photo {
+      flex: 0 0 78vw;
+      max-width: 600px;
+      height: 310px;
+      scroll-snap-align: start;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .photo:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 45%, rgba(0, 0, 0, .48))
+    }
+
+    .photo.one {
+      background-image: url("poza1.jpg");
+    }
+
+    .photo.two {
+      background-image: url("poza2.jpg");
+    }
+
+    .photo.three {
+      background-image: url("poza3.jpg");
+    }
+
+    .photo.four {
+      background-image: url("poza4.jpg");
+    }
+
+    .offerGrid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 55px
+    }
+
+    .offerItem {
+      padding: 15px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .offerItem strong {
+      display: block;
+      font: 700 13px Manrope;
+      margin-bottom: 5px
+    }
+
+    .offerItem p {
+      margin: 0;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.55
+    }
+
+    .formBox {
+      background: rgba(12, 12, 12, .72);
+      border: 1px solid var(--line);
+      padding: 24px;
+      backdrop-filter: blur(12px)
+    }
+
+    .formBox h3 {
+      font: 600 28px "Playfair Display";
+      margin: 0 0 7px
+    }
+
+    .formBox>p {
+      font-size: 12px;
+      color: var(--soft);
+      margin: 0 0 17px
+    }
+
+    .formrow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px
+    }
+
+    input,
+    select {
+      width: 100%;
+      height: 42px;
+      margin-bottom: 8px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      background: rgba(255, 255, 255, .055);
+      color: #fff;
+      font: 12px "DM Sans", sans-serif;
+      border-radius: 0;
+      outline: none
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--gold)
+    }
+
+    select option {
+      color: #111
+    }
+
+    .formBox .btn {
+      width: 100%;
+      margin: 2px 0 0;
+      cursor: pointer
+    }
+
+    .formmsg {
+      font-size: 11px;
+      color: var(--gold);
+      line-height: 1.5;
+      margin: 10px 0 0
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 55px
+    }
+
+    .members {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line)
+    }
+
+    .member {
+      background: rgba(10, 10, 10, .78);
+      padding: 15px 16px
+    }
+
+    .members::after {
+      content: "";
+      display: block;
+      background: rgba(10, 10, 10, .78) url("sigla.png") center center / 75px auto no-repeat;
+    }
+
+    .member b {
+      display: block;
+      font: 600 18px "Playfair Display"
+    }
+
+    .member small {
+      color: var(--gold);
+      font: 600 8px Manrope;
+      letter-spacing: .12em;
+      text-transform: uppercase
+    }
+
+    .cta {
+      min-height: 48svh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      background: rgba(5, 5, 5, .55)
+    }
+
+    .cta h2 {
+      font-size: clamp(52px, 9vw, 100px)
+    }
+
+    .cta .muted {
+      max-width: 460px;
+      margin: 15px auto 21px
+    }
+
+    footer {
+      padding: 34px 0 28px;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      background: linear-gradient(180deg,
+          rgba(8, 8, 8, .96),
+          #050505);
+      text-align: center;
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      display: block;
+      width: 45px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 18px;
+      opacity: .8;
+    }
+
+    footer .wrap {
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .45);
+    }
+
+    footer .wrap::after {
+      content: "LIVE EVENTS • CRAIOVA";
+      display: block;
+      margin-top: 9px;
+      font-size: 7px;
+      letter-spacing: .28em;
+      color: var(--gold);
+      opacity: .75;
+    }
+
+    .footer-logo {
+      width: 90px;
+      height: auto;
+      margin: 0 auto 16px;
+      opacity: .85;
+      display: block;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: .7s ease
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:760px) {
+      .hero .wrap.reveal {
+        top: 35px
+      }
+
+      .hero .wrap.reveal.show {
+        transform: translateY(35px)
+      }
+
+      .wrap {
+        width: calc(100% - 24px)
+      }
+
+      header {
+        padding: 12px 0
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 210px;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(5, 5, 5, .94);
+        border: 1px solid rgba(255, 255, 255, .12);
+        backdrop-filter: blur(10px);
+      }
+
+      nav a {
+        display: block;
+        width: 100%;
+        padding: 13px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, .10);
+      }
+
+      nav a:last-child {
+        border-bottom: none;
+      }
+
+      .menu {
+        display: block
+      }
+
+      section {
+        padding: 15px 0
+      }
+
+      .hero {
+        min-height: 60svh;
+        padding-bottom: 15px;
+      }
+
+      .hero h1 {
+        font-size: 60px
+      }
+
+      .heroText {
+        font-size: 13px;
+        max-width: 360px
+      }
+
+      .actions {
+        margin-top: 10px;
+        transform: translateY(-10px);
+      }
+
+      .scrollhint {
+        display: none
+      }
+
+      .two,
+      .offerGrid,
+      .team {
+        grid-template-columns: 1fr;
+        gap: 25px
+      }
+
+      .eventGrid {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 18px;
+      }
+
+      .event {
+        min-height: 95px;
+        padding: 13px 12px;
+      }
+
+      .event b {
+        font-size: 19px;
+        margin-bottom: 5px;
+      }
+
+      .event p {
+        font-size: 9px;
+        line-height: 1.4;
+      }
+
+      .galleryHead {
+        display: block
+      }
+
+      .galleryHead .muted {
+        margin-top: 10px
+      }
+
+      .photo {
+        flex-basis: 84vw;
+        height: 245px
+      }
+
+      .offerGrid {
+        gap: 25px
+      }
+
+      .formBox {
+        padding: 19px
+      }
+
+      .formrow {
+        grid-template-columns: 1fr
+      }
+
+      .members {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .member {
+        padding: 14px
+      }
+
+      .member b {
+        font-size: 16px
+      }
+
+      .stats {
+        gap: 17px
+      }
+
+      .stat strong {
+        font-size: 23px
+      }
+
+      .stat span {
+        font-size: 7px
+      }
+
+      .cta {
+        min-height: 45svh
+      }
+
+      .cta h2 {
+        font-size: 57px
+      }
+    }
+
+    @media(max-width:390px) {
+      .hero h1 {
+        font-size: 53px
+      }
+
+      .eventGrid {
+        grid-template-columns: 1fr
+      }
+
+      .members {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:390px) {
+      .members::after {
+        display: none;
+      }
+    }
+
+    /* ===== PREMIUM LIVE STAGE LIGHTING ===== */
+    .stage-lights {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      isolation: isolate;
+      mix-blend-mode: screen;
+    }
+
+    .stage-lights::before {
+      content: "";
+      position: absolute;
+      inset: -15%;
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(255, 211, 120, .13), transparent 28%),
+        radial-gradient(ellipse at 88% 18%, rgba(130, 165, 255, .13), transparent 28%),
+        radial-gradient(ellipse at 50% 8%, rgba(255, 255, 255, .06), transparent 30%);
+      filter: blur(26px);
+      animation: ambientSweep 12s ease-in-out infinite alternate;
+    }
+
+    .stage-lights .beam {
+      position: absolute;
+      top: -25%;
+      height: 155vh;
+      width: 34vw;
+      transform-origin: 50% 0;
+      opacity: .19;
+      filter: blur(8px);
+    }
+
+    .stage-lights .beam::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .05) 20%, rgba(255, 244, 205, .85) 50%, rgba(255, 255, 255, .05) 80%, transparent 100%);
+      clip-path: polygon(43% 0, 57% 0, 100% 100%, 0 100%);
+    }
+
+    .stage-lights .beam-a {
+      left: -12%;
+      transform: rotate(22deg);
+      animation: spotLeft 8s ease-in-out infinite;
+    }
+
+    .stage-lights .beam-b {
+      right: -12%;
+      transform: rotate(-22deg);
+      animation: spotRight 9s ease-in-out infinite;
+    }
+
+    .stage-lights .beam-c {
+      left: 31%;
+      width: 40vw;
+      opacity: .095;
+      animation: spotCenter 10s ease-in-out infinite;
+    }
+
+    .stage-lights .haze {
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      bottom: -12%;
+      height: 58%;
+      background:
+        radial-gradient(ellipse at 18% 62%, rgba(255, 230, 180, .18), transparent 40%),
+        radial-gradient(ellipse at 52% 45%, rgba(255, 255, 255, .14), transparent 42%),
+        radial-gradient(ellipse at 84% 65%, rgba(170, 190, 255, .14), transparent 40%);
+      filter: blur(26px);
+      opacity: .22;
+      animation: hazeDrift 16s ease-in-out infinite alternate;
+    }
+
+    .stage-lights .glow {
+      position: absolute;
+      left: 50%;
+      top: -5%;
+      width: 75vw;
+      height: 65vw;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 214, 137, .13), transparent 67%);
+      filter: blur(34px);
+      opacity: .8;
+      animation: glowBreathe 7s ease-in-out infinite;
+    }
+
+    .stage-lights .flash {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 250, 235, .2);
+      opacity: 0;
+      animation: stageFlash 8s ease-in-out infinite;
+    }
+
+    @keyframes spotLeft {
+
+      0%,
+      100% {
+        transform: rotate(22deg) translateX(-2vw)
+      }
+
+      50% {
+        transform: rotate(39deg) translateX(13vw)
+      }
+    }
+
+    @keyframes spotRight {
+
+      0%,
+      100% {
+        transform: rotate(-22deg) translateX(2vw)
+      }
+
+      50% {
+        transform: rotate(-39deg) translateX(-13vw)
+      }
+    }
+
+    @keyframes spotCenter {
+
+      0%,
+      100% {
+        transform: rotate(8deg) translateX(-8vw)
+      }
+
+      50% {
+        transform: rotate(-14deg) translateX(9vw)
+      }
+    }
+
+    @keyframes hazeDrift {
+      0% {
+        transform: translate3d(-4%, 2%, 0) scale(1)
+      }
+
+      50% {
+        transform: translate3d(4%, -2%, 0) scale(1.08)
+      }
+
+      100% {
+        transform: translate3d(-2%, 0, 0) scale(1.03)
+      }
+    }
+
+    @keyframes glowBreathe {
+
+      0%,
+      100% {
+        transform: translateX(-50%) scale(.9);
+        opacity: .55
+      }
+
+      50% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 1
+      }
+    }
+
+    @keyframes ambientSweep {
+      0% {
+        transform: translateX(-2%) scale(1);
+        opacity: .65
+      }
+
+      100% {
+        transform: translateX(2%) scale(1.08);
+        opacity: 1
+      }
+    }
+
+    @keyframes stageFlash {
+
+      0%,
+      72%,
+      100% {
+        opacity: 0
+      }
+
+      74% {
+        opacity: .85
+      }
+
+      74.7% {
+        opacity: 0
+      }
+
+      76% {
+        opacity: .3
+      }
+
+      76.5% {
+        opacity: 0
+      }
+    }
+
+    @media(max-width:700px) {
+      .stage-lights .beam {
+        width: 52vw;
+        opacity: .14;
+        filter: blur(7px)
+      }
+
+      .stage-lights .beam-c {
+        width: 58vw;
+        opacity: .065
+      }
+
+      .stage-lights .haze {
+        height: 48%;
+        opacity: .16;
+        filter: blur(20px)
+      }
+
+      .stage-lights .glow {
+        width: 125vw;
+        height: 110vw
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .stage-lights * {
+        animation: none !important
+      }
+
+      .stage-lights .flash {
+        display: none
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      body::before {
+        background-size: 120% auto;
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        transform: none;
+        background-color: #080808;
+      }
+    }
+
+    .header-signature {
+      position: absolute;
+      left: 60%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #c9a45c;
+      opacity: 0.9;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="stage-lights" aria-hidden="true">
+    <span class="beam beam-a"></span>
+    <span class="beam beam-b"></span>
+    <span class="beam beam-c"></span>
+    <span class="glow"></span>
+    <span class="haze"></span>
+    <span class="flash"></span>
+  </div>
+  <header id="header">
+    <div class="wrap nav">
+
+      <a class="logo" href="#home">
+        <img src="sigla.png" alt="Old School Band" class="site-logo">
+      </a>
+
+      <nav><a href="#band">Band</a><a href="#events">Evenimente</a><a href="#gallery">Galerie</a><a
+          href="#offer">Ofertă</a><a href="#check">Disponibilitate</a></nav>
+
+      <button class="menu"
+        onclick="document.querySelector('nav').style.display=document.querySelector('nav').style.display==='flex'?'none':'flex'">☰</button>
+
+      <div class="header-signature">
+        LIVE MUSIC · CRAIOVA · SINCE 2013
+      </div>
+
+    </div>
+  </header>
+
+  <main style="position:relative;z-index:1">
+    <section class="hero" id="home">
+      <div class="wrap reveal">
+        <div class="eyebrow">Live Events · Craiova · România</div>
+        <h1>Old School<br><em>Band.</em></h1>
+        <p class="heroText">Muzică live, energie și atmosferă pentru evenimente care merită ținute minte.</p>
+        <div class="actions"><a class="btn gold" href="#check">Verifică data</a><a class="btn" href="#gallery">Vezi
+            live</a></div>
+      </div>
+      <div class="scrollhint">SCROLL ↓</div>
+    </section>
+
+    <section id="band">
+      <div class="wrap two reveal">
+        <div>
+          <div class="kicker">Din 2013</div>
+          <h2>Nu doar cântăm.<br><span style="color:var(--gold)">Creăm atmosfera.</span></h2>
+        </div>
+        <div>
+          <p class="lead">Old School Band înseamnă muzică live, repertoriu divers și un show adaptat oamenilor din fața
+            scenei.</p>
+          <p class="muted" style="margin-top:12px">De la primul acord până la ultimul dans, construim energia serii
+            împreună cu invitații.</p>
+          <div class="stats">
+            <div class="stat"><strong>2013</strong><span>Experiență</span></div>
+            <div class="stat"><strong>LIVE</strong><span>100% live</span></div>
+            <div class="stat"><strong>∞</strong><span>Momente</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="events">
+      <div class="wrap reveal">
+        <div class="kicker">Pentru orice ocazie</div>
+        <h2>Tu alegi evenimentul.<br>Noi aducem energia.</h2>
+        <div class="eventGrid">
+          <div class="event"><b>NUNȚI</b>
+            <p>Repertoriu pentru toate generațiile și o atmosferă construită în jurul invitaților.</p>
+          </div>
+          <div class="event"><b>PRIVATE</b>
+            <p>Aniversări, petreceri și seri în care ringul devine centrul atenției.</p>
+          </div>
+          <div class="event"><b>CORPORATE</b>
+            <p>Live show pentru petreceri de companie, gale și evenimente de brand.</p>
+          </div>
+          <div class="event"><b>EVENTS</b>
+            <p>Scene, festivaluri și evenimente publice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="wrap reveal">
+        <div class="galleryHead">
+          <div>
+            <div class="kicker">Atmosfera</div>
+            <h2>See us.<br><span style="color:var(--gold)">Feel it.</span></h2>
+          </div>
+          <p class="muted">Galerie foto cu swipe lateral. Aici intră fotografiile reale ale trupei.</p>
+        </div>
+        <div class="photos">
+          <div class="photo one"></div>
+          <div class="photo two"></div>
+          <div class="photo three"></div>
+          <div class="photo four"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="offer">
+      <div class="wrap offerGrid reveal">
+        <div>
+          <div class="kicker">Oferta</div>
+          <h2>Un show construit pentru evenimentul tău.</h2>
+          <p class="muted" style="margin-top:13px">Program live, sonorizare, lumini și DJ — configurația se stabilește
+            în funcție de eveniment.</p>
+        </div>
+        <div>
+          <div class="offerItem"><strong>LIVE BAND</strong>
+            <p>Programe live și repertoriu variat.</p>
+          </div>
+          <div class="offerItem"><strong>SONORIZARE & LUMINI</strong>
+            <p>Echipament profesional și atmosferă vizuală.</p>
+          </div>
+          <div class="offerItem"><strong>DJ</strong>
+            <p>DJ pe toată perioada evenimentului, între programele live.</p>
+          </div>
+          <div class="offerItem"><strong>OPȚIONAL</strong>
+            <p>Vioară, show cu darabană/dansatori și alte elemente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="check">
+      <div class="wrap two reveal">
+        <div>
+          <div class="kicker">Verifică data</div>
+          <h2>Vrei să știi dacă suntem liberi?</h2>
+          <p class="muted" style="margin-top:13px">Completezi câteva detalii. Noi verificăm disponibilitatea și îți
+            răspundem direct pe WhatsApp.</p>
+        </div>
+        <form class="formBox" id="checkForm">
+          <h3>Hai să verificăm.</h3>
+          <p>Fără cont. Fără calendar public.</p>
+          <div class="formrow"><input id="name" required placeholder="Nume"><input id="date" required type="date"></div>
+          <div class="formrow"><select id="type" required>
+              <option value="">Tip eveniment</option>
+              <option>Nuntă</option>
+              <option>Petrecere privată</option>
+              <option>Corporate</option>
+              <option>Alt eveniment</option>
+            </select><input id="city" placeholder="Locație / oraș"></div>
+          <div class="formrow"><input id="guests" type="number" min="1" placeholder="Nr. invitați"><input id="phone"
+              required placeholder="Telefon"></div>
+          <button class="btn gold" type="submit">VERIFICĂ DATA →</button>
+          <p class="formmsg" id="formMsg"></p>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap team reveal">
+        <div>
+          <div class="kicker">The band</div>
+          <h2>O echipă.<br>Un singur sound.</h2>
+        </div>
+        <div class="members">
+          <div class="member"><b>Călin Băluțoiu</b><small>Voce</small></div>
+          <div class="member"><b>Alisia Oanță</b><small>Voce</small></div>
+          <div class="member"><b>Geo Fabian</b><small>Vioară · Mandolină</small></div>
+          <div class="member"><b>Mihai Lungu</b><small>Chitară</small></div>
+          <div class="member"><b>Robert Covrig</b><small>Clapă</small></div>
+          <div class="member"><b>Cornel Tudose</b><small>Chitară bas</small></div>
+          <div class="member"><b>Florin Davițoiu</b><small>Tobe · Voce</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="wrap reveal">
+        <div class="kicker">Let's make it happen</div>
+        <h2>Urmează<br><span style="color:var(--gold)">evenimentul tău?</span></h2>
+        <p class="muted">Spune-ne data, locația și tipul evenimentului.</p><a class="btn gold" href="#check">Verifică
+          data</a>
+        <a class="btn whatsapp-btn" href="https://wa.me/40728230912" target="_blank">
+          <span class="whatsapp-light"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M20.52 3.48A11.87 11.87 0 0 0 12.04 0C5.48 0 .14 5.34.14 11.9c0 2.1.55 4.15 1.6 5.96L.04 24l6.3-1.65a11.9 11.9 0 0 0 5.7 1.45h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.43-8.42ZM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.23-.37a9.86 9.86 0 0 1-1.51-5.27c0-5.46 4.44-9.9 9.9-9.9 2.65 0 5.14 1.03 7.01 2.9a9.84 9.84 0 0 1 2.89 7c0 5.46-4.45 9.9-9.92 9.9Zm5.43-7.41c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.5 1.69.64.71.23 1.35.2 1.86.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z" />
+          </svg>
+          <span>0728 230 912</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <img src="sigla.png" alt="Old School Band" class="footer-logo">
+      <div>© <span id="year"></span> Old School Band · Live Events</div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById("header");
+    addEventListener("scroll", () => {
+      header.classList.toggle("active", scrollY > 35);
+      const y = Math.min(scrollY / 900, 1);
+      document.documentElement.style.setProperty("--scroll-light", y);
+    });
+    const observer = new IntersectionObserver(items => items.forEach(x => x.isIntersecting && x.target.classList.add("show")), { threshold: .1 });
+    document.querySelectorAll(".reveal").forEach(x => observer.observe(x));
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.addEventListener("click", function (e) {
+      const nav = document.querySelector("nav");
+      const menu = document.querySelector(".menu");
+
+      if (
+        nav.style.display === "flex" &&
+        !nav.contains(e.target) &&
+        !menu.contains(e.target)
+      ) {
+        nav.style.display = "none";
+      }
+    });
+
+    document.getElementById("checkForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const n = document.getElementById("name").value.trim();
+      const d = document.getElementById("date").value;
+      const t = document.getElementById("type").value;
+      const c = document.getElementById("city").value.trim();
+      const g = document.getElementById("guests").value.trim();
+      const ph = document.getElementById("phone").value.trim();
+      const msg = encodeURIComponent(
+        "Salut! Vreau să verific disponibilitatea Old School Band.%0A%0A" +
+        "Nume: " + n + "%0AData: " + d + "%0ATip eveniment: " + t + "%0A" +
+        "Locație: " + c + "%0AInvitați: " + g + "%0ATelefon: " + ph
+      );
+      document.getElementById("formMsg").innerHTML = 'Cererea este pregătită. <a target="_blank" style="color:var(--gold);text-decoration:underline" href="https://wa.me/40728230912?text=' + msg + '">Trimite pe WhatsApp →</a>';
+    });
+  </script>
+</body>
+
+</html>
