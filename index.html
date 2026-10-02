@@ -284,6 +284,142 @@
       background: rgba(6, 6, 6, .70)
     }
 
+
+    /* ===== EVENT PHOTO STRIP IN HERO ===== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-strip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 104px;
+      z-index: 4;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, .38) 18%, rgba(5, 5, 5, .88) 100%);
+      border-top: 1px solid rgba(255, 255, 255, .10);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      pointer-events: none;
+    }
+
+    .event-strip-track {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      gap: 8px;
+      padding: 10px 0 10px 8px;
+      animation: eventStripMove 32s linear infinite;
+    }
+
+    .event-strip-item {
+      flex: 0 0 170px;
+      height: 84px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .30);
+    }
+
+    .event-strip-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(1.08) contrast(1.03);
+    }
+
+    .event-strip-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .35));
+    }
+
+    @keyframes eventStripMove {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .event-strip-track {
+        animation: none;
+      }
+    }
+
+    /* ===== EVENT TYPES / SCENE BACKGROUND ===== */
+    .light#events {
+      position: relative;
+      background: url("scena-eveniment.jpg") center center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .light#events::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, .95) 0%,
+          rgba(0, 0, 0, .65) 7%,
+          rgba(0, 0, 0, .25) 14%,
+          rgba(0, 0, 0, 0) 24%,
+          rgba(0, 0, 0, 0) 76%,
+          rgba(0, 0, 0, .25) 86%,
+          rgba(0, 0, 0, .65) 93%,
+          rgba(0, 0, 0, .95) 100%);
+    }
+
+    .light#events>.wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    .light#events>.wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    .light#events::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
+      pointer-events: none;
+    }
+
+    @media(max-width:760px) {
+      .event-strip {
+        height: 72px;
+      }
+
+      .event-strip-track {
+        padding: 7px 0 7px 6px;
+        gap: 6px;
+      }
+
+      .event-strip-item {
+        flex-basis: 112px;
+        height: 58px;
+      }
+
+      .light#events {
+        background:
+          linear-gradient(rgba(0, 0, 0, .18), rgba(0, 0, 0, .18)),
+          url("scena-eveniment.jpg") center center / cover no-repeat;
+      }
+    }
+
     .hero {
       min-height: 78svh;
       border: 0;
@@ -492,6 +628,14 @@
       color: #87642f
     }
 
+    .light h2 {
+      color: #fff;
+      font-size: clamp(28px, 5vw, 52px);
+      text-shadow:
+        0 2px 5px rgba(0, 0, 0, .9),
+        0 0 12px rgba(0, 0, 0, .65);
+    }
+
     .eventGrid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -502,32 +646,35 @@
     .event {
       padding: 22px 17px;
       min-height: 142px;
-      background: #e9e5de
-    }
 
-    .event:nth-child(2) {
-      background: #dfdad2
-    }
+      /* transparent, dar suficient de închis pentru text */
+      background: rgba(0, 0, 0, 0.28);
 
-    .event:nth-child(3) {
-      background: #d6d0c7
-    }
+      /* chenar discret */
+      border: 1px solid rgba(255, 255, 255, 0.35);
 
-    .event:nth-child(4) {
-      background: #ccc5ba
+      color: #fff;
+      box-sizing: border-box;
+
+      /* ajută puțin la separarea textului de fotografie */
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
 
     .event b {
-      display: block;
-      font: 600 23px "Playfair Display";
-      margin-bottom: 8px
+      color: #fff;
+      font-size: 17px;
+      line-height: 1.15;
+      text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.95),
+        0 0 8px rgba(0, 0, 0, 0.8);
     }
 
     .event p {
-      font-size: 11px;
-      line-height: 1.5;
-      color: #55504a;
-      margin: 0
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 0 6px rgba(0, 0, 0, 0.6);
     }
 
     .galleryHead {
@@ -1215,6 +1362,221 @@
       color: #c9a45c;
       opacity: 0.9;
     }
+
+    /* ===== DESKTOP: CONTINUT HERO DEASUPRA BENZII FOTO ===== */
+    @media (min-width: 769px) {
+
+      .hero .wrap {
+        padding-bottom: 120px;
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 6vw, 70px);
+        line-height: .95;
+        margin-bottom: 14px;
+      }
+
+      .hero .heroText {
+        font-size: 16px;
+        line-height: 1.45;
+        max-width: 560px;
+        margin-bottom: 18px;
+      }
+
+      .hero .actions {
+        gap: 10px;
+        transform: translateY(-12px);
+      }
+
+      .hero .actions .btn {
+        padding: 10px 18px;
+        font-size: 13px;
+      }
+
+    }
+
+    /* ===== AVAILABILITY MODAL ===== */
+    .availability-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, .78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .availability-modal.open {
+      display: flex;
+    }
+
+    .availability-modal-box {
+      width: min(560px, 100%);
+      max-height: 92svh;
+      overflow-y: auto;
+      background: rgba(10, 10, 10, .97);
+      border: 1px solid rgba(202, 167, 106, .55);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .65);
+      padding: 28px;
+      position: relative;
+    }
+
+    .availability-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      border: 0;
+      background: none;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      opacity: .75;
+    }
+
+    .availability-modal-close:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .availability-modal-box h3 {
+      font: 600 34px "Playfair Display";
+      margin: 0 35px 7px 0;
+    }
+
+    .availability-modal-box>p {
+      font-size: 12px;
+      color: var(--soft);
+      margin: 0 0 20px;
+      line-height: 1.5;
+    }
+
+    .availability-formrow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .availability-form input,
+    .availability-form select,
+    .availability-form textarea {
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 11px 12px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      background: rgba(255, 255, 255, .055);
+      color: #fff;
+      font: 12px "DM Sans", sans-serif;
+      border-radius: 0;
+      outline: none;
+    }
+
+    .availability-form input,
+    .availability-form select {
+      height: 44px;
+    }
+
+    .availability-form textarea {
+      min-height: 82px;
+      resize: vertical;
+    }
+
+    .availability-form input:focus,
+    .availability-form select:focus,
+    .availability-form textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .availability-form select option {
+      color: #111;
+    }
+
+    .availability-form .btn {
+      width: 100%;
+      margin: 5px 0 0;
+      cursor: pointer;
+    }
+
+    .availability-formmsg {
+      font-size: 11px;
+      color: var(--gold);
+      line-height: 1.5;
+      margin: 10px 0 0;
+    }
+
+    @media(max-width:760px) {
+      .availability-modal {
+        padding: 12px;
+      }
+
+      .availability-modal-box {
+        padding: 22px 18px;
+      }
+
+      .availability-modal-box h3 {
+        font-size: 29px;
+      }
+
+      .availability-formrow {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+
+    /* ===== SOUND & STAGE PHOTO STRIP ===== */
+    .sound-photo-strip {
+      width: 100%;
+      overflow: hidden;
+      margin-top: 28px;
+      height: 104px;
+    }
+
+    .sound-photo-track {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      gap: 8px;
+      padding: 10px 0 10px 8px;
+      animation: soundPhotoMove 36s linear infinite;
+    }
+
+    .sound-photo-item {
+      flex: 0 0 170px;
+      height: 84px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .16);
+    }
+
+    .sound-photo-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    @keyframes soundPhotoMove {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media(max-width:760px) {
+      .sound-photo-strip {
+        height: 72px;
+      }
+
+      .sound-photo-item {
+        flex-basis: 112px;
+        height: 58px;
+      }
+    }
   </style>
 
 </head>
@@ -1257,6 +1619,27 @@
         <div class="actions"><a class="btn gold" href="#check">Verifică data</a><a class="btn" href="#gallery">Vezi
             live</a></div>
       </div>
+      <!-- ===== EVENT PHOTOS: replace filenames in VS ===== -->
+      <div class="event-strip" aria-label="Fotografii de la evenimente">
+        <div class="event-strip-track">
+          <div class="event-strip-item"><img src="eveniment1.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="eveniment2.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="eveniment3.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="eveniment4.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="eveniment5.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="eveniment6.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="eveniment1.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment2.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment3.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment4.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment5.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment6.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment7.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment8.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="eveniment9.jpg" alt=""></div>
+        </div>
+      </div>
+
       <div class="scrollhint">SCROLL ↓</div>
     </section>
 
@@ -1301,6 +1684,73 @@
       </div>
     </section>
 
+    <section id="sound">
+      <div class="wrap reveal">
+        <div class="galleryHead">
+          <div>
+            <div class="kicker">Sonorizare & scenă</div>
+            <h2>Sunet puternic.<br><span style="color:var(--gold)">Imagine de scenă.</span></h2>
+          </div>
+          <p class="muted">Câteva dintre configurațiile de sonorizare și scenă folosite la evenimentele Old School Band.
+          </p>
+        </div>
+
+        <div class="sound-photo-strip" aria-label="Fotografii sonorizare și scenă">
+          <div class="sound-photo-track">
+
+            <div class="sound-photo-item">
+              <img src="sonorizare1.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare2.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare3.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare4.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare5.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare6.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare7.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare8.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <div class="sound-photo-item">
+              <img src="sonorizare9.jpg" alt="Sonorizare și scenă Old School Band">
+            </div>
+
+            <!-- duplicăm cele 9 pentru rulare continuă -->
+            <div class="sound-photo-item"><img src="sonorizare1.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare2.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare3.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare4.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare5.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare6.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare7.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare8.jpg" alt=""></div>
+            <div class="sound-photo-item"><img src="sonorizare9.jpg" alt=""></div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <section id="gallery">
       <div class="wrap reveal">
         <div class="galleryHead">
@@ -1308,7 +1758,7 @@
             <div class="kicker">Atmosfera</div>
             <h2>See us.<br><span style="color:var(--gold)">Feel it.</span></h2>
           </div>
-          <p class="muted">Galerie foto cu swipe lateral. Aici intră fotografiile reale ale trupei.</p>
+          <p class="muted">Galerie foto cu swipe lateral.</p>
         </div>
         <div class="photos">
           <div class="photo one"></div>
@@ -1352,22 +1802,11 @@
           <p class="muted" style="margin-top:13px">Completezi câteva detalii. Noi verificăm disponibilitatea și îți
             răspundem direct pe WhatsApp.</p>
         </div>
-        <form class="formBox" id="checkForm">
+        <div class="formBox">
           <h3>Hai să verificăm.</h3>
           <p>Fără cont. Fără calendar public.</p>
-          <div class="formrow"><input id="name" required placeholder="Nume"><input id="date" required type="date"></div>
-          <div class="formrow"><select id="type" required>
-              <option value="">Tip eveniment</option>
-              <option>Nuntă</option>
-              <option>Petrecere privată</option>
-              <option>Corporate</option>
-              <option>Alt eveniment</option>
-            </select><input id="city" placeholder="Locație / oraș"></div>
-          <div class="formrow"><input id="guests" type="number" min="1" placeholder="Nr. invitați"><input id="phone"
-              required placeholder="Telefon"></div>
-          <button class="btn gold" type="submit">VERIFICĂ DATA →</button>
-          <p class="formmsg" id="formMsg"></p>
-        </form>
+          <button class="btn gold" type="button" onclick="openAvailabilityModal()">VERIFICĂ DISPONIBILITATEA →</button>
+        </div>
       </div>
     </section>
 
@@ -1405,6 +1844,44 @@
         </a>
       </div>
     </section>
+
+    <!-- ===== AVAILABILITY MODAL ===== -->
+    <div class="availability-modal" id="availabilityModal" aria-hidden="true">
+      <div class="availability-modal-box" role="dialog" aria-modal="true" aria-labelledby="availabilityTitle">
+        <button class="availability-modal-close" type="button" aria-label="Închide"
+          onclick="closeAvailabilityModal()">×</button>
+        <h3 id="availabilityTitle">Hai să verificăm.</h3>
+        <p>Completează datele evenimentului, iar mesajul va fi pregătit automat pentru WhatsApp.</p>
+
+        <form class="availability-form" id="availabilityForm">
+          <div class="availability-formrow">
+            <input id="availabilityName" required placeholder="Nume">
+            <input id="availabilityPhone" required type="tel" placeholder="Telefon">
+          </div>
+
+          <div class="availability-formrow">
+            <input id="availabilityDate" required type="date">
+            <input id="availabilityCity" required placeholder="Locație / oraș">
+          </div>
+
+          <div class="availability-formrow">
+            <select id="availabilityType" required>
+              <option value="">Tip eveniment</option>
+              <option>Nuntă</option>
+              <option>Petrecere privată</option>
+              <option>Corporate</option>
+              <option>Alt eveniment</option>
+            </select>
+            <input id="availabilityGuests" type="number" min="1" placeholder="Nr. invitați">
+          </div>
+
+          <textarea id="availabilityDetails" placeholder="Detalii suplimentare (opțional)"></textarea>
+
+          <button class="btn gold" type="submit">SEND →</button>
+          <p class="availability-formmsg" id="availabilityFormMsg"></p>
+        </form>
+      </div>
+    </div>
   </main>
   <footer>
     <div class="wrap">
@@ -1437,21 +1914,101 @@
       }
     });
 
-    document.getElementById("checkForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const n = document.getElementById("name").value.trim();
-      const d = document.getElementById("date").value;
-      const t = document.getElementById("type").value;
-      const c = document.getElementById("city").value.trim();
-      const g = document.getElementById("guests").value.trim();
-      const ph = document.getElementById("phone").value.trim();
-      const msg = encodeURIComponent(
-        "Salut! Vreau să verific disponibilitatea Old School Band.%0A%0A" +
-        "Nume: " + n + "%0AData: " + d + "%0ATip eveniment: " + t + "%0A" +
-        "Locație: " + c + "%0AInvitați: " + g + "%0ATelefon: " + ph
-      );
-      document.getElementById("formMsg").innerHTML = 'Cererea este pregătită. <a target="_blank" style="color:var(--gold);text-decoration:underline" href="https://wa.me/40728230912?text=' + msg + '">Trimite pe WhatsApp →</a>';
+    function openAvailabilityModal() {
+      const modal = document.getElementById("availabilityModal");
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => document.getElementById("availabilityName").focus(), 50);
+    }
+
+    function closeAvailabilityModal() {
+      const modal = document.getElementById("availabilityModal");
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("availabilityModal").addEventListener("click", function (e) {
+      if (e.target === this) closeAvailabilityModal();
     });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeAvailabilityModal();
+    });
+
+    document.getElementById("availabilityForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const n = document.getElementById("availabilityName").value.trim();
+      const ph = document.getElementById("availabilityPhone").value.trim();
+      const d = document.getElementById("availabilityDate").value;
+      const c = document.getElementById("availabilityCity").value.trim();
+      const t = document.getElementById("availabilityType").value;
+      const g = document.getElementById("availabilityGuests").value.trim();
+      const details = document.getElementById("availabilityDetails").value.trim();
+
+      const message =
+        "Salut! Vreau să verific disponibilitatea Old School Band.\n\n" +
+        "Nume: " + n + "\n" +
+        "Telefon: " + ph + "\n" +
+        "Data evenimentului: " + d + "\n" +
+        "Locație: " + c + "\n" +
+        "Tip eveniment: " + t + "\n" +
+        "Nr. invitați: " + (g || "Nespecificat") + "\n" +
+        "Detalii: " + (details || "Nespecificat");
+
+      const whatsappUrl =
+        "https://wa.me/40728230912?text=" + encodeURIComponent(message);
+
+      document.getElementById("availabilityFormMsg").innerHTML =
+        'Mesajul este pregătit. <a target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline" href="' +
+        whatsappUrl +
+        '">Trimite pe WhatsApp →</a>';
+
+      window.open(whatsappUrl, "_blank", "noopener");
+    });
+
+    // ===== SOUND & STAGE CAROUSEL =====
+    const soundSlides = document.querySelectorAll(".sound-slide");
+    const soundDots = document.querySelectorAll(".sound-dot");
+    const soundSlider = document.getElementById("soundSlider");
+    let soundIndex = 0;
+    let soundTimer;
+    let soundTouchStartX = 0;
+
+    function showSoundSlide(index) {
+      soundIndex = (index + soundSlides.length) % soundSlides.length;
+      soundSlides.forEach((slide, i) => slide.classList.toggle("active", i === soundIndex));
+      soundDots.forEach((dot, i) => dot.classList.toggle("active", i === soundIndex));
+    }
+
+    function startSoundAutoplay() {
+      clearInterval(soundTimer);
+      soundTimer = setInterval(() => showSoundSlide(soundIndex + 1), 4500);
+    }
+
+    soundDots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        showSoundSlide(i);
+        startSoundAutoplay();
+      });
+    });
+
+    soundSlider.addEventListener("touchstart", e => {
+      soundTouchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    soundSlider.addEventListener("touchend", e => {
+      const distance = e.changedTouches[0].clientX - soundTouchStartX;
+      if (Math.abs(distance) > 45) {
+        showSoundSlide(soundIndex + (distance < 0 ? 1 : -1));
+        startSoundAutoplay();
+      }
+    }, { passive: true });
+
+    startSoundAutoplay();
+
   </script>
 </body>
 
