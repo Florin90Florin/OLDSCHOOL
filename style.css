@@ -443,7 +443,8 @@
     .hero h1 {
       font: 600 clamp(55px, 10vw, 112px)/.82 "Playfair Display", serif;
       letter-spacing: -.05em;
-      margin: 0
+      margin: 0;
+      text-shadow: 0 2px 5px rgba(0,0,0,.95), 0 6px 16px rgba(0,0,0,.75)
     }
 
     .hero h1 em {
@@ -456,7 +457,8 @@
       margin-top: 20px;
       color: #ddd;
       font-size: 14px;
-      line-height: 1.55
+      line-height: 1.55;
+      text-shadow: 0 2px 5px rgba(0,0,0,.95), 0 4px 10px rgba(0,0,0,.7)
     }
 
     .actions {
