@@ -398,21 +398,25 @@
       pointer-events: none;
     }
 
-@media (max-width:760px) {
-    .event-strip {
+    @media (max-width:760px) {
+      .event-strip {
         height: 72px;
         transform: translateY(10px);
-    }
+      }
 
-    .event-strip-track {
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .event-strip-track {
         padding: 7px 0 7px 6px;
         gap: 6px;
-    }
+      }
 
-    .event-strip-item {
+      .event-strip-item {
         flex-basis: 112px;
         height: 58px;
-    }
+      }
 
       .light#events {
         background:
@@ -420,6 +424,7 @@
           url("scena-eveniment.jpg") center center / cover no-repeat;
       }
     }
+
 
     .hero {
       min-height: 78svh;
@@ -936,9 +941,9 @@
       }
 
       .hero .actions {
-    position: relative;
-    z-index: 3;
-  }
+        position: relative;
+        z-index: 3;
+      }
 
       .hero .wrap.reveal.show {
         transform: translateY(35px)
@@ -1001,6 +1006,12 @@
       .actions {
         margin-top: 10px;
         transform: translateY(-10px);
+      }
+
+      .hero .actions .btn {
+        min-height: 38px;
+        padding: 0 14px;
+        font-size: 8px;
       }
 
       .scrollhint {
@@ -2006,19 +2017,19 @@
     });
 
     if (soundSlider) {
-  soundSlider.addEventListener("touchstart", e => {
-    soundTouchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
+      soundSlider.addEventListener("touchstart", e => {
+        soundTouchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
 
-  soundSlider.addEventListener("touchend", e => {
-    const distance = e.changedTouches[0].clientX - soundTouchStartX;
+      soundSlider.addEventListener("touchend", e => {
+        const distance = e.changedTouches[0].clientX - soundTouchStartX;
 
-    if (Math.abs(distance) > 45) {
-      showSoundSlide(soundIndex + (distance < 0 ? 1 : -1));
-      startSoundAutoplay();
+        if (Math.abs(distance) > 45) {
+          showSoundSlide(soundIndex + (distance < 0 ? 1 : -1));
+          startSoundAutoplay();
+        }
+      }, { passive: true });
     }
-  }, { passive: true });
-}
 
     startSoundAutoplay();
 
