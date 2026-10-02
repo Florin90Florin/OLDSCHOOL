@@ -371,11 +371,6 @@
       z-index: 2;
     }
 
-    .light#events>.wrap {
-      position: relative;
-      z-index: 2;
-    }
-
     .light#events::before {
       content: "";
       position: absolute;
@@ -387,9 +382,6 @@
 
     @media(max-width:760px) {
 
-      .hero {
-        overflow: visible;
-      }
 
       .event-strip {
         height: 72px;
@@ -926,25 +918,9 @@
     }
 
     @media(max-width:760px) {
-      .hero {
-        min-height: 78svh;
-        padding-bottom: 72px;
-      }
 
-      .hero .wrap.reveal {
-        top: 30;
-      }
 
-      .hero .wrap.reveal.show {
-        transform: none;
-      }
 
-      .hero .actions {
-        position: relative;
-        z-index: 5;
-        gap: 8px;
-        transform: none;
-      }
 
       .wrap {
         width: calc(100% - 24px)
@@ -986,14 +962,7 @@
         padding: 15px 0
       }
 
-      .hero {
-        min-height: 60svh;
-        padding-bottom: 15px;
-      }
 
-      .hero h1 {
-        font-size: 50px
-      }
 
       .heroText {
         font-size: 13px;
@@ -1586,44 +1555,34 @@
       }
     }
 
-/* ===== FIX FINAL HERO PE TELEFON ===== */
-/* Mobile hero title adjustment */
-/* Mobile hero description position */
-@media (max-width: 760px) {
-  .heroText {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 48px;
-    margin: 0;
-  }
-}
-
-@media (max-width: 760px) {
-  .hero h1 {
-    font-size: 50px;
-  }
-}
-
+/* ===== MOBILE HERO — REGULA UNICĂ ===== */
 @media (max-width: 760px) {
 
   .hero {
-    position: relative;
     min-height: 60svh;
-    padding-bottom: 72px;
+    padding-bottom: 0;
+    position: relative;
+    border-top: 0;
+    margin-top: 0;
   }
 
   .hero .wrap.reveal,
   .hero .wrap.reveal.show {
     position: absolute;
-    left: 12px;
-    right: 12px;
-    top: -25px;
+    left: 0;
+    right: 0;
+    top: 0;
     bottom: 72px;
-    width: auto;
-    padding: 0;
-    margin: 0;
+    width: calc(100% - 24px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 0 8px;
+    box-sizing: border-box;
     transform: none;
+    z-index: 5;
   }
 
   .hero h1 {
@@ -1634,50 +1593,13 @@
   }
 
   .heroText {
-    margin-top: auto;
-}
-
-  .hero .actions {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    margin: 0;
-    transform: none;
-    z-index: 10;
-  }
-}
-
-
-@media (max-width: 760px) {
-
-  .hero {
-    min-height: 60svh;
-    padding-bottom: 0;
-    position: relative;
-  }
-
-  .hero .wrap.reveal,
-  .hero .wrap.reveal.show {
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: 72px;
-
-    width: calc(100% - 24px);
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    padding-top: 0;
-    padding-bottom: 8px;
-    box-sizing: border-box;
-
-    transform: none;
-    z-index: 5;
+    bottom: 48px;
+    margin: 0;
+    font-size: 13px;
+    max-width: 360px;
   }
 
   .hero .actions {
@@ -1691,5 +1613,5 @@
     bottom: 0;
     transform: none;
   }
-
 }
+
