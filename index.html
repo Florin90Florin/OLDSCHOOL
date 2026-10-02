@@ -1597,6 +1597,96 @@
         height: 58px;
       }
     }
+
+/* ===== FIX FINAL HERO PE TELEFON ===== */
+@media (max-width: 760px) {
+
+  .hero {
+    position: relative;
+    min-height: 60svh;
+    padding-bottom: 72px;
+  }
+
+  .hero .wrap.reveal,
+  .hero .wrap.reveal.show {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 45px;
+    bottom: 72px;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    transform: none;
+  }
+
+  .hero h1 {
+    margin: 0;
+  }
+
+  .heroText {
+    margin-top: 15px;
+  }
+
+  .hero .actions {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    transform: none;
+    z-index: 10;
+  }
+}
+
+
+@media (max-width: 760px) {
+
+  .hero {
+    min-height: 60svh;
+    padding-bottom: 0;
+    position: relative;
+  }
+
+  .hero .wrap.reveal,
+  .hero .wrap.reveal.show {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 72px;
+
+    width: calc(100% - 24px);
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding-top: 18px;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+
+    transform: none;
+    z-index: 5;
+  }
+
+  .hero .actions {
+    margin-top: 0;
+    transform: none;
+    position: relative;
+    z-index: 6;
+  }
+
+  .event-strip {
+    bottom: 0;
+    transform: none;
+  }
+
+}
+
+
+
   </style>
 
 </head>
