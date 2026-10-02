@@ -400,8 +400,14 @@
 
 
     @media(max-width:760px) {
+
+      .hero {
+        overflow: visible;
+      }
+
       .event-strip {
         height: 72px;
+        bottom: -18px;
       }
 
       .event-strip-track {
@@ -414,7 +420,7 @@
         height: 58px;
       }
 
-      
+
       .light#events {
         background:
           linear-gradient(rgba(0, 0, 0, .18), rgba(0, 0, 0, .18)),
@@ -2014,19 +2020,19 @@
     });
 
     if (soundSlider) {
-  soundSlider.addEventListener("touchstart", e => {
-    soundTouchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
+      soundSlider.addEventListener("touchstart", e => {
+        soundTouchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
 
-  soundSlider.addEventListener("touchend", e => {
-    const distance = e.changedTouches[0].clientX - soundTouchStartX;
+      soundSlider.addEventListener("touchend", e => {
+        const distance = e.changedTouches[0].clientX - soundTouchStartX;
 
-    if (Math.abs(distance) > 45) {
-      showSoundSlide(soundIndex + (distance < 0 ? 1 : -1));
-      startSoundAutoplay();
+        if (Math.abs(distance) > 45) {
+          showSoundSlide(soundIndex + (distance < 0 ? 1 : -1));
+          startSoundAutoplay();
+        }
+      }, { passive: true });
     }
-  }, { passive: true });
-}
 
     startSoundAutoplay();
 
