@@ -36,8 +36,12 @@
       <nav><a href="#band">Band</a><a href="#events">Evenimente</a><a href="#gallery">Galerie</a><a
           href="#offer">Ofertă</a><a href="#check">Disponibilitate</a></nav>
 
-      <button class="menu"
-        onclick="document.querySelector('nav').style.display=document.querySelector('nav').style.display==='flex'?'none':'flex'">☰</button>
+
+
+      <button class="menu" type="button" onclick="document.querySelector('#header nav').classList.toggle('open')"
+        aria-label="Deschide meniul">☰</button>
+
+
 
       <div class="header-signature">
         LIVE MUSIC · CRAIOVA · SINCE 2013
@@ -279,8 +283,18 @@
     <section class="cta" id="contact">
       <div class="wrap reveal">
         <div class="kicker">Let's make it happen</div>
-        <h2>Urmează<br><span style="color:var(--gold)">evenimentul tău?</span></h2>
-        <p class="muted">Spune-ne data, locația și tipul evenimentului.</p><a class="btn gold" href="#check">Verifică
+        <h2>Ai un eveniment<br><span style="color:var(--gold)">în plan?</span></h2>
+
+        <p class="muted">
+          Nuntă <span style="color:var(--gold)">·</span>
+          Petrecere privată <span style="color:var(--gold)">·</span>
+          Eveniment corporate
+        </p>
+
+        <p class="muted">
+          Spune-ne ce ai în plan și hai să facem împreună un eveniment de neuitat.
+        </p>
+        <a class="btn gold" href="#check">Verifică
           data</a>
         <a class="btn whatsapp-btn" href="https://wa.me/40728230912" target="_blank">
           <span class="whatsapp-light"></span>
@@ -464,38 +478,53 @@
 
 
 
-<script>
-  const gallery = document.querySelector('.photos');
-  const prev = document.querySelector('.gallery-arrow.prev');
-  const next = document.querySelector('.gallery-arrow.next');
+  <script>
+    const gallery = document.querySelector('.photos');
+    const prev = document.querySelector('.gallery-arrow.prev');
+    const next = document.querySelector('.gallery-arrow.next');
 
-  if (gallery && prev && next) {
-    function moveGallery(direction) {
-      const photo = gallery.querySelector('.photo');
-      if (!photo) return;
+    if (gallery && prev && next) {
+      function moveGallery(direction) {
+        const photo = gallery.querySelector('.photo');
+        if (!photo) return;
 
-      const gap = parseFloat(getComputedStyle(gallery).gap) || 0;
-      const step = photo.getBoundingClientRect().width + gap;
-      const max = gallery.scrollWidth - gallery.clientWidth;
+        const gap = parseFloat(getComputedStyle(gallery).gap) || 0;
+        const step = photo.getBoundingClientRect().width + gap;
+        const max = gallery.scrollWidth - gallery.clientWidth;
 
-      if (direction === 1 && gallery.scrollLeft >= max - 5) {
-        gallery.scrollTo({ left: 0, behavior: 'smooth' });
-      } else if (direction === -1 && gallery.scrollLeft <= 5) {
-        gallery.scrollTo({ left: max, behavior: 'smooth' });
-      } else {
-        gallery.scrollBy({
-          left: direction * step,
-          behavior: 'smooth'
-        });
+        if (direction === 1 && gallery.scrollLeft >= max - 5) {
+          gallery.scrollTo({ left: 0, behavior: 'smooth' });
+        } else if (direction === -1 && gallery.scrollLeft <= 5) {
+          gallery.scrollTo({ left: max, behavior: 'smooth' });
+        } else {
+          gallery.scrollBy({
+            left: direction * step,
+            behavior: 'smooth'
+          });
+        }
       }
+
+      next.addEventListener('click', () => moveGallery(1));
+      prev.addEventListener('click', () => moveGallery(-1));
     }
+  </script>
 
-    next.addEventListener('click', () => moveGallery(1));
-    prev.addEventListener('click', () => moveGallery(-1));
-  }
-</script>
+  <script>
+    document.addEventListener('click', function (event) {
+      const nav = document.querySelector('#header nav');
+      const menu = document.querySelector('#header .menu');
 
-
+      if (
+        nav &&
+        menu &&
+        nav.classList.contains('open') &&
+        !nav.contains(event.target) &&
+        !menu.contains(event.target)
+      ) {
+        nav.classList.remove('open');
+      }
+    });
+  </script>
 
 
 </body>

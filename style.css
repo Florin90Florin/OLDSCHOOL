@@ -1810,7 +1810,7 @@ header#header.active {
   header#header {
     min-height: 104px;
     padding: 8px 0 0 !important;
-    overflow: hidden;
+    overflow: visible;
   }
 
   header#header .nav {
@@ -1937,3 +1937,38 @@ header#header.active {
 .photo {
   flex-shrink: 0;
 }
+
+
+/* Reparare meniu mobil */
+@media (max-width: 900px) {
+  header#header nav.open {
+    display: flex !important;
+  }
+}
+
+
+/* Contrast mai bun pentru secțiunea de contact */
+#contact.cta {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.88),
+    rgba(5, 5, 5, 0.97)
+  );
+  border-top: 1px solid rgba(201, 164, 92, 0.35);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.2);
+}
+
+#contact.cta .kicker {
+  color: var(--gold);
+}
+
+#contact.cta .muted {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#contact.cta h2 {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+}
+
+
