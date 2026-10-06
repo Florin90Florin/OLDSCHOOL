@@ -11,7 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
     rel="stylesheet">
-  
+
 
   <link rel="stylesheet" href="style.css">
 
@@ -58,25 +58,25 @@
       <!-- ===== EVENT PHOTOS: replace filenames in VS ===== -->
       <div class="event-strip" aria-label="Fotografii de la evenimente">
         <div class="event-strip-track">
-          <div class="event-strip-item"><img src="eveniment1.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment2.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment3.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment4.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment5.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment6.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment7.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment8.jpg" alt="Eveniment Old School Band"></div>
-          <div class="event-strip-item"><img src="eveniment9.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment1.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment2.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment3.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment4.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment5.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment6.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment7.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment8.jpg" alt="Eveniment Old School Band"></div>
+          <div class="event-strip-item"><img src="images/eveniment9.jpg" alt="Eveniment Old School Band"></div>
 
-          <div class="event-strip-item"><img src="eveniment1.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment2.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment3.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment4.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment5.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment6.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment7.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment8.jpg" alt=""></div>
-          <div class="event-strip-item"><img src="eveniment9.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment1.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment2.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment3.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment4.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment5.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment6.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment7.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment8.jpg" alt=""></div>
+          <div class="event-strip-item"><img src="images/eveniment9.jpg" alt=""></div>
         </div>
       </div>
 
@@ -200,12 +200,20 @@
           </div>
           <p class="muted">Galerie foto cu swipe lateral.</p>
         </div>
-        <div class="photos">
-          <div class="photo one"></div>
-          <div class="photo two"></div>
-          <div class="photo three"></div>
-          <div class="photo four"></div>
+
+        <div class="photo-gallery">
+          <button class="gallery-arrow prev" type="button" aria-label="Fotografiile anterioare">‹</button>
+
+          <div class="photos">
+            <div class="photo one"></div>
+            <div class="photo two"></div>
+            <div class="photo three"></div>
+            <div class="photo four"></div>
+          </div>
+
+          <button class="gallery-arrow next" type="button" aria-label="Fotografiile următoare">›</button>
         </div>
+
       </div>
     </section>
 
@@ -453,6 +461,43 @@
     startSoundAutoplay();
 
   </script>
+
+
+
+<script>
+  const gallery = document.querySelector('.photos');
+  const prev = document.querySelector('.gallery-arrow.prev');
+  const next = document.querySelector('.gallery-arrow.next');
+
+  if (gallery && prev && next) {
+    function moveGallery(direction) {
+      const photo = gallery.querySelector('.photo');
+      if (!photo) return;
+
+      const gap = parseFloat(getComputedStyle(gallery).gap) || 0;
+      const step = photo.getBoundingClientRect().width + gap;
+      const max = gallery.scrollWidth - gallery.clientWidth;
+
+      if (direction === 1 && gallery.scrollLeft >= max - 5) {
+        gallery.scrollTo({ left: 0, behavior: 'smooth' });
+      } else if (direction === -1 && gallery.scrollLeft <= 5) {
+        gallery.scrollTo({ left: max, behavior: 'smooth' });
+      } else {
+        gallery.scrollBy({
+          left: direction * step,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    next.addEventListener('click', () => moveGallery(1));
+    prev.addEventListener('click', () => moveGallery(-1));
+  }
+</script>
+
+
+
+
 </body>
 
 </html>
