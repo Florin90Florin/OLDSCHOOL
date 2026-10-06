@@ -1727,3 +1727,252 @@ body::before {
     min-height: 380px;
   }
 }
+
+/* ===== FIX FINAL MOBILE: fara banda foto din HERO ===== */
+@media (max-width: 768px) {
+  /* Ascundem doar banda foto din prima sectiune; banda de la #sound ramane activa. */
+  .hero > .event-strip {
+    display: none !important;
+  }
+
+  /* Hero-ul se termina imediat dupa coperta, fara zona neagra suplimentara. */
+  .hero {
+    height: 320px !important;
+    min-height: 320px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+
+  .hero .wrap.reveal,
+  .hero .wrap.reveal.show {
+    inset: 0 12px 0 !important;
+  }
+
+  .hero h1 {
+    top: 100px !important;
+    left: 12px !important;
+  }
+
+  .hero .actions {
+    top: auto !important;
+    bottom: 176px !important;
+  }
+
+  .heroText {
+    top: auto !important;
+    bottom: 118px !important;
+  }
+
+  .hero .scrollhint {
+    display: none !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .hero { height: 300px !important; min-height: 300px !important; }
+  .hero .actions { bottom: 162px !important; }
+  .heroText { bottom: 108px !important; }
+}
+
+/* Pe desktop nu modificam banda foto din hero. */
+@media (min-width: 769px) {
+  .hero > .event-strip { display: flex; }
+}
+
+/* ===== MOBILE HERO — AJUSTARE FINALĂ A POZIȚIILOR ===== */
+@media (max-width: 599px) {
+  /* Prima bandă foto este ascunsă doar în hero. */
+  .hero > .event-strip {
+    display: none !important;
+  }
+
+  /* Coperta se încheie fără spațiu negru înaintea secțiunii următoare. */
+  .hero {
+    height: 320px !important;
+    min-height: 320px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .hero .wrap.reveal,
+  .hero .wrap.reveal.show {
+    inset: 0 12px 0 !important;
+  }
+
+  /* Titlul rămâne în fotografia de copertă, sub antet. */
+  .hero h1 {
+    position: absolute !important;
+    top: 8px !important;
+    bottom: auto !important;
+    left: 0 !important;
+    right: auto !important;
+    max-width: 95% !important;
+    margin: 0 !important;
+    font-size: clamp(40px, 11vw, 48px) !important;
+    line-height: .86 !important;
+  }
+
+  /* Descrierea și butoanele stau la baza fotografiei, fără să se suprapună. */
+  .heroText {
+    top: auto !important;
+    bottom: 54px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+
+  .hero .actions {
+    top: auto !important;
+    bottom: 6px !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    gap: 6px !important;
+    margin: 0 !important;
+  }
+
+  .hero .actions .btn {
+    min-height: 36px !important;
+    padding: 0 9px !important;
+    font-size: 9px !important;
+  }
+
+  .hero .scrollhint {
+    display: none !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .hero { height: 300px !important; min-height: 300px !important; }
+  .heroText { bottom: 52px !important; }
+  .hero .actions .btn { padding: 0 7px !important; }
+}
+
+/* ===== STRUCTURA CORECTA MOBILE: antet > fotografie > text/butoane > continut ===== */
+@media (max-width: 768px) {
+  /* Antetul ramane primul si nu mai este acoperit de titlul hero. */
+  header#header {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    min-height: 82px;
+    padding: 8px 0 !important;
+    background: #050505 !important;
+    z-index: 100 !important;
+  }
+
+  body::before {
+    content: none !important;
+    background: none !important;
+  }
+
+  main {
+    padding-top: 82px !important;
+  }
+
+  .hero {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    background: #080808 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Fotografia este un bloc separat, imediat sub antet. */
+  .hero::before {
+    content: "" !important;
+    display: block !important;
+    position: relative !important;
+    order: 0 !important;
+    width: 100% !important;
+    height: clamp(230px, 66vw, 290px) !important;
+    flex: 0 0 auto !important;
+    background-image: url("./Old-School-Band-Craiova.jpeg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center 42% !important;
+  }
+
+  .hero .wrap.reveal,
+  .hero .wrap.reveal.show {
+    order: 1 !important;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 14px 12px 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: #080808 !important;
+  }
+
+  .hero .eyebrow,
+  .hero h1,
+  .hero .scrollhint {
+    display: none !important;
+  }
+
+  .heroText {
+    position: static !important;
+    order: 0 !important;
+    display: block !important;
+    max-width: 560px !important;
+    margin: 0 0 12px !important;
+    color: #f1f1f1 !important;
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+    text-shadow: none !important;
+  }
+
+  .hero .actions {
+    position: static !important;
+    order: 1 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .hero .actions .btn {
+    min-height: 40px !important;
+    padding: 0 12px !important;
+    font-size: 10px !important;
+  }
+
+  /* Ascundem numai banda foto din hero; cea de la sonorizare ramane. */
+  .hero > .event-strip {
+    display: none !important;
+  }
+
+  /* Sectiunea urmatoare incepe imediat dupa text si butoane. */
+  #band {
+    margin-top: 0 !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  header#header { min-height: 88px; }
+  main { padding-top: 88px !important; }
+  .hero::before { height: 340px !important; }
+}
+
+@media (min-width: 769px) {
+  /* Pastram comportamentul existent pe desktop. */
+  body::before { content: ""; }
+}
