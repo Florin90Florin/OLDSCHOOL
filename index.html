@@ -4,6 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  </script>
+
   <meta name="theme-color" content="#080808">
   <title>Old School Band — Live Events</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -354,6 +361,9 @@
 
   <script>
     const header = document.getElementById("header");
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
     addEventListener("scroll", () => {
       header.classList.toggle("active", scrollY > 35);
       const y = Math.min(scrollY / 900, 1);
