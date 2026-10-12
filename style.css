@@ -1972,3 +1972,244 @@ header#header.active {
 }
 
 
+/* ===== CARDURI OFERTA - CHENAR AURIU ===== */
+
+.offerItem {
+  position: relative;
+  padding: 15px 14px;
+  border: 1px solid rgba(202, 167, 106, 0.18);
+  background: rgba(255, 255, 255, 0.015);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.offerItem:hover {
+  border-color: rgba(202, 167, 106, 0.85);
+  background: linear-gradient(
+    135deg,
+    rgba(202, 167, 106, 0.12),
+    rgba(202, 167, 106, 0.025)
+  );
+  box-shadow:
+    0 0 10px rgba(202, 167, 106, 0.10),
+    inset 0 0 12px rgba(202, 167, 106, 0.035);
+  transform: translateY(-2px);
+}
+
+.offerItem:hover strong {
+  color: var(--gold);
+}
+
+/* Pe telefoane, cardurile rămân stabile la atingere */
+@media (hover: none) {
+  .offerItem:hover {
+    border-color: rgba(202, 167, 106, 0.18);
+    background: rgba(255, 255, 255, 0.015);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .offerItem:hover strong {
+    color: inherit;
+  }
+}
+
+
+/* ===== ACCENT AURIU PENTRU CONTACT ===== */
+
+#contact.cta {
+  position: relative;
+  border-top: 1px solid rgba(202, 167, 106, 0.45);
+  border-bottom: 1px solid rgba(202, 167, 106, 0.3);
+  box-shadow:
+    0 -8px 25px -20px rgba(202, 167, 106, 0.8),
+    0 8px 25px -20px rgba(202, 167, 106, 0.7);
+}
+
+#contact.cta .btn:hover {
+  box-shadow: 0 0 18px rgba(202, 167, 106, 0.25);
+}
+
+
+
+/* ===== PHOTO LIGHTBOX ===== */
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 60px 70px;
+  background: rgba(0, 0, 0, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.photo-lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.lightbox-image {
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.45);
+  user-select: none;
+}
+
+.lightbox-close,
+.lightbox-arrow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(202, 167, 106, 0.35);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-arrow:hover {
+  background: rgba(202, 167, 106, 0.2);
+  border-color: var(--gold);
+}
+
+.lightbox-close {
+  top: 18px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.lightbox-arrow {
+  top: 50%;
+  width: 46px;
+  height: 58px;
+  border-radius: 4px;
+  font-size: 38px;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev {
+  left: 18px;
+}
+
+.lightbox-next {
+  right: 18px;
+}
+
+@media (max-width: 600px) {
+  .photo-lightbox {
+    gap: 0;
+    padding: 55px 12px;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 78vh;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-arrow {
+    width: 38px;
+    height: 48px;
+    font-size: 30px;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
+}
+
+
+/* ===== FOOTER SOCIALS ===== */
+footer .footer-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin: 0 auto 18px;
+}
+
+footer .footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: var(--gold);
+  border: 1px solid rgba(202, 167, 106, 0.35);
+  transition: color 0.25s ease, border-color 0.25s ease,
+              transform 0.25s ease;
+}
+
+footer .footer-social svg {
+  display: block;
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+}
+
+footer .footer-social:hover {
+  color: #f0d5a0;
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+footer .footer-social:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+  footer .footer-socials {
+    gap: clamp(12px, 4vw, 20px);
+  }
+
+  footer .footer-social {
+    width: 38px;
+    height: 38px;
+  }
+
+  footer .footer-social svg {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  footer .footer-social {
+    transition: none;
+  }
+}
+
+
