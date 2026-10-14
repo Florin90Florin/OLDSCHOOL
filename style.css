@@ -2213,3 +2213,352 @@ footer .footer-social:focus-visible {
 }
 
 
+/* ===== CARDURI EXTENSIBILE PENTRU MEMBRII TRUPEI ===== */
+
+.member {
+  min-width: 0;
+  padding: 0;
+  background: rgba(10, 10, 10, .92);
+}
+
+
+.member summary {
+  display: block;
+  padding: 15px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+
+.member summary::-webkit-details-marker {
+  display: none;
+}
+
+.member summary::after {
+  content: "+";
+  float: right;
+  color: var(--gold);
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+.member[open] summary::after {
+  content: "−";
+}
+
+.member summary b {
+  display: block;
+  font: 600 18px "Playfair Display";
+}
+
+.member summary small {
+  display: block;
+  margin-top: 7px;
+  color: var(--gold);
+  font: 600 8px Manrope;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.member summary:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: -3px;
+}
+
+.member-card {
+  padding: 0 16px 18px;
+  border-top: 1px solid rgba(202, 167, 106, .25);
+}
+
+.member-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  margin-top: 16px;
+  background: #171717;
+}
+
+.member-card-text h3 {
+  margin: 15px 0 5px;
+  font: 600 22px "Playfair Display", serif;
+}
+
+.member-card-text .member-role {
+  margin: 0 0 12px;
+  color: var(--gold);
+  font: 600 9px Manrope, sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.member-card-text p:last-child {
+  margin: 0;
+  color: var(--soft);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .member summary {
+    padding: 14px 12px;
+  }
+
+  .member summary b {
+    font-size: 16px;
+  }
+
+  .member-card {
+    padding: 0 12px 15px;
+  }
+
+  .member-card img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .member-card-text h3 {
+    font-size: 20px;
+  }
+}
+
+
+
+/* ===== EVIDENȚIERE MEMBRU SELECTAT ===== */
+
+.member {
+  border: 1px solid rgba(202, 167, 106, 0.18);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+              background-color 0.25s ease;
+}
+
+.member[open] {
+  position: relative;
+  z-index: 2;
+  border-color: rgba(202, 167, 106, 0.85);
+  background: rgba(202, 167, 106, 0.07);
+  box-shadow:
+    0 0 0 1px rgba(202, 167, 106, 0.18),
+    0 0 18px rgba(202, 167, 106, 0.18),
+    inset 0 0 16px rgba(202, 167, 106, 0.04);
+}
+
+.member[open] summary b {
+  color: var(--gold);
+}
+
+.member[open] summary::after {
+  color: #f0d5a0;
+  text-shadow: 0 0 10px rgba(202, 167, 106, 0.7);
+}
+
+.member summary:hover {
+  background: rgba(202, 167, 106, 0.045);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member {
+    transition: none;
+  }
+}
+
+
+
+/* Încadrare individuală pentru fotografiile membrilor */
+.member-card img[src*="mihai-lungu"] {
+  object-position: center 20%;
+}
+
+
+.member-card img[src*="cornel-tudose"] {
+  object-fit: contain;
+  object-position: center 10%;
+  background: #000;
+}
+
+
+.member-card img[src*="florin-davitoiu"] {
+  object-position: center 45%;
+}
+
+
+/* ===== SERVICII EXTENSIBILE ===== */
+
+.offerItems {
+  min-width: 0;
+}
+
+.offerItem {
+  padding: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+
+.offerItem summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 4px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.offerItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.offerItem summary strong {
+  display: block;
+  margin: 0;
+  font: 700 13px Manrope, sans-serif;
+  color: var(--ink);
+  transition: color .25s ease;
+}
+
+.offer-toggle {
+  flex: 0 0 auto;
+  color: var(--gold);
+  font-size: 20px;
+  line-height: 1;
+  transition: transform .25s ease;
+}
+
+.offerItem[open] summary strong {
+  color: var(--gold);
+}
+
+.offerItem[open] .offer-toggle {
+  transform: rotate(45deg);
+}
+
+.offerItem summary:hover strong {
+  color: var(--gold);
+}
+
+.offerDescription {
+  padding: 0 22px 18px 4px;
+  color: var(--soft);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.offerItem summary:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: -2px;
+}
+
+@media (max-width: 760px) {
+  .offerItem summary {
+    padding: 16px 4px;
+  }
+
+  .offerDescription {
+    padding-bottom: 16px;
+  }
+}
+
+
+/* ===== LASERE DE SCENĂ ÎN SECȚIUNEA CTA ===== */
+
+.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #050505;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 1;
+  background:
+    linear-gradient(
+      112deg,
+      transparent 25%,
+      rgba(202, 167, 106, 0.02) 37%,
+      rgba(202, 167, 106, 0.65) 38%,
+      transparent 39%
+    ),
+    linear-gradient(
+      68deg,
+      transparent 38%,
+      rgba(100, 145, 255, 0.02) 47%,
+      rgba(100, 145, 255, 0.48) 48%,
+      transparent 49%
+    ),
+    linear-gradient(
+      125deg,
+      transparent 54%,
+      rgba(202, 167, 106, 0.28) 55%,
+      transparent 56%
+    ),
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(202, 167, 106, 0.22),
+      transparent 65%
+    );
+  background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+  animation: ctaLasers 9s ease-in-out infinite alternate;
+}
+
+.cta > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes ctaLasers {
+  0% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, center;
+  }
+  100% {
+    background-position: 100% 30%, 0% 40%, 100% 0%, center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta::before {
+    animation: none;
+  }
+}
+
+
+
+
+/* ===== ELIMINARE ACCENTE ALBASTRE LA INTERACȚIUNE ===== */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+summary,
+input,
+select,
+textarea {
+  accent-color: var(--gold);
+}
+
+a:focus,
+button:focus,
+summary:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline-color: var(--gold);
+}
+
+a:active,
+button:active {
+  color: var(--gold);
+}
+
+/* Selectarea textului */
+::selection {
+  background: rgba(202, 167, 106, 0.35);
+  color: #fff;
+}
